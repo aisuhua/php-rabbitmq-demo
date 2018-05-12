@@ -1,5 +1,5 @@
-# demo02
+# demo04
 
-Message acknowledgment
+Message durability
 
 - [tutorial-two-php](https://www.rabbitmq.com/tutorials/tutorial-two-php.html)
