@@ -39,6 +39,10 @@ demo06
 - Topics
     - Topic exchange
 
+## tutorial-six-php
+
+- Remote procedure call (RPC) 
+
 ## books
 
 - [RabbitMQ in Action](https://www.manning.com/books/rabbitmq-in-action), [Jason and Alvaro’s excellent Rabbit book](http://www.rabbitmq.com/blog/2012/05/29/jason-and-alvaros-excellent-rabbit-book/)
