@@ -24,13 +24,19 @@ demo02/demo03/demo04/demo05
 demo06
 
 - Publish/Subscribe
-    - Exchanges
+    - Fanout Exchanges
     - Temporary queues
     - Bindings
 
 ## tutorial-four-php
 
 - Routing
+    - Direct exchange
+
+## tutorial-five-php
+
+- Topics
+    - Topic exchange
 
 ## books
 
