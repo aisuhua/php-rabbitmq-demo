@@ -56,3 +56,16 @@ check
 rabbitmqctl status
 rabbitmqctl cluster_status
 ```
+
+add user
+
+```sh
+# add user 
+rabbitmqctl add_user root root123
+
+# set permission
+rabbitmqctl set_premissions -p / root ".*" ".*" ".*"
+
+# set tags
+rabbitmqctl set_user_tags root administrator
+```
