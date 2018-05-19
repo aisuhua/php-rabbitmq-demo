@@ -8,4 +8,8 @@
 ## demo02
 
 - Confirm
-    - 2.7 Using publisher confirms to verify delivery 
+    - 2.7 Using publisher confirms to verify delivery
+    
+## Links
+
+- [Mnesia User's Guide](http://erlang.org/doc/apps/mnesia/users_guide.html) 
