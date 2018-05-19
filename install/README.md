@@ -64,8 +64,17 @@ add user
 rabbitmqctl add_user root root123
 
 # set permission
-rabbitmqctl set_premissions -p / root ".*" ".*" ".*"
+rabbitmqctl set_permissions -p / root ".*" ".*" ".*"
 
 # set tags
 rabbitmqctl set_user_tags root administrator
 ```
+
+查看当前使用中的配置信息
+
+```sh
+rabbitmqctl environment
+```
+
+- [Verify Configuration: How to Check Effective Configuration](https://www.rabbitmq.com/configure.html#verify-configuration-effective-configuration)
+
