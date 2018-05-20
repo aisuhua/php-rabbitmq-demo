@@ -78,3 +78,31 @@ rabbitmqctl environment
 
 - [Verify Configuration: How to Check Effective Configuration](https://www.rabbitmq.com/configure.html#verify-configuration-effective-configuration)
 
+## install
+
+```sh
+# download
+wget "http://packages.erlang-solutions.com/site/esl/esl-erlang/FLAVOUR_1_general/esl-erlang_20.1.7-1~ubuntu~xenial_amd64.deb"
+wget "https://dl.bintray.com/rabbitmq/all/rabbitmq-server/3.7.5/rabbitmq-server_3.7.5-1_all.deb"
+
+# install erlangs
+dpkg -i esl-erlang_20.1.7-1~ubuntu~xenial_amd64.deb 
+apt-get install -f
+
+# install rabbitmq
+dpkg -i rabbitmq-server_3.7.5-1_all.deb 
+apt-get install -f
+
+# check status
+service rabbitmq-server status
+# or
+rabbitmqctl status
+```
+
+rabbitmq.conf
+
+```sh
+vim /etc/rabbitmq/rabbitmq.conf 
+```
+
+- [rabbitmq.conf.example](https://github.com/rabbitmq/rabbitmq-server/blob/master/docs/rabbitmq.conf.example)
