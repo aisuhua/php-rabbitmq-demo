@@ -9,17 +9,16 @@ $channel = $connection->channel();
 
 $exchange = 'amq.rabbitmq.trace';
 
-echo $exchange, PHP_EOL;
-
 list($queue_name, ) = $channel->queue_declare('', false, false, true, false);
 
 $channel->queue_bind($queue_name, $exchange, '#');
-$channel->queue_bind($queue_name, $exchange, 'publish.#');
-$channel->queue_bind($queue_name, $exchange, 'deliver.#');
+//$channel->queue_bind($queue_name, $exchange, 'publish.#');
+//$channel->queue_bind($queue_name, $exchange, 'deliver.#');
 
 echo ' [*] Waiting for logs. To exit press CTRL+C', "\n";
 
 $callback = function($msg) {
+
     echo " [x] Received ", $msg->delivery_info['routing_key'] . ':' . $msg->body, PHP_EOL;
 
     $msg->delivery_info['channel']->basic_ack($msg->delivery_info['delivery_tag']);
