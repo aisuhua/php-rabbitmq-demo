@@ -2,7 +2,7 @@
 
 Learning RabbitMQ in depth.
 
-- [php-amqplib](https://github.com/php-amqplib/php-amqplib)
+    - [php-amqplib](https://github.com/php-amqplib/php-amqplib)
 - [Queues](https://www.rabbitmq.com/queues.html)
 - [Documentation: Table of Contents](https://www.rabbitmq.com/documentation.html)
 
