@@ -48,4 +48,3 @@ demo06
 
 - [RabbitMQ in Action](https://www.manning.com/books/rabbitmq-in-action), [Jason and Alvaro’s excellent Rabbit book](http://www.rabbitmq.com/blog/2012/05/29/jason-and-alvaros-excellent-rabbit-book/)
 - [RabbitMQ实战指南](https://www.amazon.cn/dp/B077MQC3KM)
-
