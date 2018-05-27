@@ -3,7 +3,22 @@ require_once __DIR__.'/../../../vendor/autoload.php';
 
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 
-$connection = new AMQPStreamConnection('192.168.31.111', 5670, 'root', 'root123');
+$connection = new AMQPStreamConnection(
+    '192.168.31.111',
+    5670,
+    'root',
+    'root123',
+    '/',
+    false,
+    'AMQPLAIN',
+    null,
+    'en_US',
+    3.0,
+    30,
+    null,
+    true,
+    15
+);
 $channel = $connection->channel();
 
 $channel->exchange_declare('direct_logs', 'direct', false, false, false);
