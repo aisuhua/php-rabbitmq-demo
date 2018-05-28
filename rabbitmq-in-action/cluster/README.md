@@ -15,10 +15,10 @@ $connection = new AMQPStreamConnection(
     null,
     'en_US',
     3.0,
-    30,
+    40,
     null,
     true,
-    15
+    20
 );
 ```
 
@@ -40,7 +40,7 @@ defaults
 ```
 
 - [HAProxy 最佳實踐筆記](http://fangpeishi.com/haproxy_best_practice_notes.html)
-- [Time format](https://cbonte.github.io/haproxy-dconv/1.6/configuration.html#2.5)
+- [Time format](https://cbonte.github.io/haproxy-dconv/1.6/configuration.html#2.5)f
 
 ## Troubleshooting
 
@@ -49,6 +49,7 @@ rm -rf /var/lib/rabbitmq/mnesia/*
 ```
 
 - [Clustering Guide](https://www.rabbitmq.com/clustering.html)
+
 
 
 ## Links

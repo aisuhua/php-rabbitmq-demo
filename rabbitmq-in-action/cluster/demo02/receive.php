@@ -14,10 +14,10 @@ $connection = new AMQPStreamConnection(
     null,
     'en_US',
     3.0,
-    30,
+    40,
     null,
-    true,
-    15
+    false,
+    20
 );
 $channel = $connection->channel();
 
