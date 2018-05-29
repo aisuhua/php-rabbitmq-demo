@@ -53,7 +53,9 @@ rabbit3$ rabbitmqctl start_app
 ```
 
 RabbitMQ 节点和 CLI 工具（如：`rabbitmqctl`） 都是通过认证 Erlang cookie 的方式来允许相互通讯。
-On UNIX systems, the cookie will be typically located in `/var/lib/rabbitmq/.erlang.cookie` (used by the server) and `$HOME/.erlang.cookie` (used by CLI tools). 
+
+> On UNIX systems, the cookie will be typically located in `/var/lib/rabbitmq/.erlang.cookie` (used by the server) and `$HOME/.erlang.cookie` (used by CLI tools). 
+
 搭建集群时，需要将某一个节点的 cookie 值复制到其他节点服务器，它们的值必须一致才能进行通讯。
 
 队列和消息内容会存储在集群中的某一个节点，所以只有该节点才拥有该队列的所有信息。
@@ -141,7 +143,7 @@ RabbitMQ 只要求在集群中至少有一个磁盘节点，所有其他节点�
 为了避免这种情况，RabbitMQ 服务器默认启动 60 秒心跳检查。
 每 60 秒检查一下该 TCP 连接的客户端是否还在线，如超过检查到两次对方无回应，则会断开该连接。
 
-客户端在连接时，可以进行动态设置心跳检查时间，如调整为 15 秒检查一次。心跳检查可以是双向的，有些客户端库（如 `php-amqplib`）也支持定期检查 RabbitMQ 服务器的存活情况。
+客户端在连接时，可以动态设置心跳检查时间，如调整为 15 秒检查一次。心跳检查可以是双向的，有些客户端库（如 `php-amqplib`）也支持定期检查 RabbitMQ 服务器的存活情况。
 
 值得注意的是，当引入了 HAProxy 时，由于其默认的客戶端和服务器不活跃的超时时间都是 50 秒，所以应将该时间调整比 60 秒大，或者将 RabbitMQ 心跳检查时间调整为比 50 秒小。 
 
