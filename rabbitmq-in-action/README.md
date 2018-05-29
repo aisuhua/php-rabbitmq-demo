@@ -4,11 +4,63 @@
 
 ### 四种类型的交换器 exchange
 
-[direct](img/Figure-2.4-direct-exchange-message-flow.png)、[fanout](img/Figure-2.4-fanout-exchange-message-flow.png)、[topic](Figure-2.4-topic-exchange-message-flow.png) 和 headers。
+[direct](img/Figure-2.4-direct-exchange-message-flow.png)、[fanout](img/Figure-2.4-fanout-exchange-message-flow.png)、[topic](img/Figure-2.4-topic-exchange-message-flow.png) 和 headers。
 
 其中 headers 交换器允许你匹配 AMQP 消息的 header 而非路由键，它和 direct 交换器完全一样，但性能会差很多，因此它并不太实用。
 
 ![Figure-2.3-AMQP-statck-exchanges-bindings-and-queues](img/Figure-2.3-AMQP-statck-exchanges-bindings-and-queues.png)
 
-## 
+### 消息持久化 durable 
+
+为了实现 RabbitMQ 重启后消息不丢失，exchange、queue 和 message 本身都需要分别设置成持久化。
+
+### 消息确认 ack
+
+从队列取出消息时，可开启自动确认 ack，那么消息在取出后会立即确认。或者当消费完毕后再进行确认。在多数情况下，后者会更加可靠，因为它避免了 worker 中途退出而未能再次重试的情况。
+
+### 公平派发 Fair dispatch
+
+为了让消息平均分配到每一个 worker，充分利用 worker 资源，减少出现有些 worker 很忙有些没事可做的情况，可将队列的订阅规则调整为每次只派发一条消息。
+
+```php
+$channel->basic_qos(null, 1, null);
+```
+
+那么每个 worker 都只会在处理完当前的消息后，才会获取下一条消息。 
+
+- [Work Queues](https://www.rabbitmq.com/tutorials/tutorial-two-php.html)
+
+### 集群
+
+RabbitMQ 内建集群的两个目标：
+
+1. 允许消息者和生产者在 RabbitMQ 节点崩溃的情况下继续运行；（这一点并不完全适用于持久化的队列）
+2. 通过添加更多的节点来线性扩展消息通许的吞吐量；
+
+集群中的节点是一种平行的关系，可以相互加入并随时退出。
+
+队列和消息内容会存储在集群中的某一个节点，所以只有该节点才拥有该队列的所有信息。
+但是，访问集群中任何一个节点，都可以访问到该队列。因为非所有者节点都拥有该队列的元数据和指向该队列所在节点的指针。
+因此当集群节点崩溃时，该节点的队列和关联的绑定就都消息了。附加在那些队列上的消费者丢失了其订阅的消息，并且任何匹配该队列绑定信息的新消息也都丢失了。
+
+别担心，你可以让消息者重连到集群并创建队列，对吧？这种做法仅当队列最开始没有被设置成可持久化时是可行的。如果重新创建的队列被标记成持久化了，那么在其他节点上重新声明他们的话会报错。
+这样确保了当失败节点恢复后加入集群，该节点上的队列消息不会丢失。想要该指定重回集群的唯一方法是恢复故障节点。但是如果消息者尝试重建的队列不是可持久化的，那么重新声明就可以了。
+
+为什么默认情况下 RabbitMQ 不降队列内容和状态复制到所有节点上？
+
+- 存储空间 —— 如果每个集群节点都拥有所有队列的完整拷贝，那么添加新的节点不会给你带来更多的存储空间。
+- 性能 —— 消息的发布需要将消息复制到每一个集群节点。对于持久化消息来说，每一条消息都会触发磁盘活动。每次新增节点，网络和磁盘负载都会增加，最终只能保持集群性能的平稳（甚至更糟）。
+
+通过设置集群中的唯一节点来负责任何特定队列，只有该负责节点才会因队列消息而遭受磁盘活动的影响。所有其他节点需要将接收到的该队列的消息传递给该队列的所有着节点。
+因此，Rabbit 集群添加更多的节点意味着你将拥有更多的节点来传播队列，这些新增节点为你带来了性能的提升。
+当负载增加时，RabbitMQ 集群是性能扩展的最佳方案。
+
+
+
+
+
+
+
+
+
 
