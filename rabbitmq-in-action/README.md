@@ -43,12 +43,18 @@ RabbitMQ 内建集群的两个目标：
 集群中的节点是一种平行的关系，可以相互加入并随时退出。
 
 ```sh
+# join cluster
 rabbit2$ rabbitmqctl stop_app
 rabbit2$ rabbitmqctl join_cluster rabbit@rabbit1
 rabbit2$ rabbitmqctl start_app
 
 rabbit3$ rabbitmqctl stop_app
 rabbit3$ rabbitmqctl join_cluster --ram rabbit@rabbit2
+rabbit3$ rabbitmqctl start_app
+
+# remove from cluster
+rabbit3$ rabbitmqctl stop_app
+rabbit3$ rabbitmqctl reset
 rabbit3$ rabbitmqctl start_app
 ```
 
