@@ -170,6 +170,7 @@ defaults
 - [rabbitmq——heartbeat](https://my.oschina.net/hncscwc/blog/195343)
 - [Does a TCP socket connection have a “keep alive”?](https://stackoverflow.com/questions/1480236/does-a-tcp-socket-connection-have-a-keep-alive)
 - [Reliability Guide](https://www.rabbitmq.com/reliability.html)
+- [TCP Keepalive HOWTO](http://www.tldp.org/HOWTO/html_single/TCP-Keepalive-HOWTO/)
 
 ## AMQP
 
