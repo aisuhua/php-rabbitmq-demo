@@ -171,6 +171,7 @@ defaults
 - [Does a TCP socket connection have a “keep alive”?](https://stackoverflow.com/questions/1480236/does-a-tcp-socket-connection-have-a-keep-alive)
 - [Reliability Guide](https://www.rabbitmq.com/reliability.html)
 - [TCP Keepalive HOWTO](http://www.tldp.org/HOWTO/html_single/TCP-Keepalive-HOWTO/)
+- [Library error: a socket error occurred](https://github.com/pdezwart/php-amqp/issues/305)
 
 ## AMQP
 
